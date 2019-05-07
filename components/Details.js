@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Linking, Platform } from 'react-native';
+import { View, StyleSheet, Text, Linking, Platform, TouchableHighlight } from 'react-native';
 import { getRandomColor } from '../lib/helper';
 import Avatar from './Avatar';
 import { ExtraDetailAttributes, Enquiries, Students } from '../constants';
@@ -44,7 +44,7 @@ export default class Details extends Component {
   }
 
   getActions(){
-    const {type, isStarred} = this.props;
+    const {type, isStarred, phoneNumber} = this.props;
     return (
       <View style={styles.actions}>
         {type == Enquiries && (<Icon
@@ -63,16 +63,6 @@ export default class Details extends Component {
         {type == Students && <Star isStarred={isStarred}></Star>}
       </View>
     );
-
-  //
-  // <Text style={styles.actions} onPress={()=>{this.onPressCall(phoneNumber)}} >
-  //     <Icon
-  //       name="call"
-  //       color="rgb(57, 193, 0)"
-  //       size={15}
-  //     />
-  // </Text>
-  // {"..."}
   }
 
   onPressCall(phoneNumber){
@@ -89,27 +79,34 @@ export default class Details extends Component {
 
   }
 
+  _onPressButton = () => {
+    const {navigation, ...props} = this.props;
+    this.props.navigation.navigate("DetailScreen", props);
+  }
+
   render() {
-    const {platformTag, dataType, created, createdOn, name, phoneNumber, isStarred } = this.props;
+    const {platformTag, dataType, created, createdOn, name } = this.props;
     return (
+      <TouchableHighlight onPress={this._onPressButton}>
       <View style={styles.top}>
-        <View style={styles.avatar}>
-          <Avatar name={name[0]} />
-        </View>
-        <View style={styles.right}>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.name} >{name || ""}</Text>
-            <Text style={styles.platform}>{ platformTag || dataType && 'New'}</Text>
+          <View style={styles.avatar}>
+            <Avatar name={name[0]} />
           </View>
-          <View>
-            {
-                this.getExtraDetails()
-            }
+          <View style={styles.right}>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.name} >{name || ""}</Text>
+              <Text style={styles.platform}>{ platformTag || dataType && 'New'}</Text>
+            </View>
+            <View>
+              {
+                  this.getExtraDetails()
+              }
+            </View>
           </View>
-        </View>
-        <Text style={styles.created}>{ created || createdOn}</Text>
-        {this.getActions()}
+          <Text style={styles.created}>{ created || createdOn}</Text>
+          {this.getActions()}
       </View>
+      </TouchableHighlight>
     )
   }
 }

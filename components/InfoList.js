@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList } from "react-native";
 import { getDetails } from "../apis";
 import Details from "./Details";
 
@@ -28,14 +28,13 @@ export default class InfoList extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         {
-            this.state && this.state.details.length &&
-            <FlatList
-                data={this.state.details}
-                keyExtractor={(item, index) => "key" + index}
-                renderItem={({ item }) => <Details {...item} type={this.props.type} dataType={ dataType }/>}
-            />
+          this.state && this.state.details.length &&
+          <FlatList
+              data={this.state.details}
+              keyExtractor={(item, index) => "key" + index}
+              renderItem={({ item }) => <Details {...item} type={this.props.type} dataType={ dataType } navigation={this.props.navigation}/>}
+          />
         }
-      
       </View>
     )
   }

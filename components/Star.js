@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image, Button } from 'react-native';
-import { getRandomColor } from '../lib/helper';
+import { View, StyleSheet, Text, Image } from 'react-native';
 
 export default class Star extends Component {
 
@@ -10,9 +9,8 @@ export default class Star extends Component {
         isStarred : this.props.isStarred
     }
   }
-  componentDidMount() {}
 
-  onStartClick=()=>{
+  onStarClick=()=>{
     this.setState({isStarred: !this.state.isStarred})
   }
 
@@ -20,12 +18,12 @@ export default class Star extends Component {
     return (
         <View >
           <Text
-              onPress={this.onStartClick}
+              onPress={this.onStarClick}
             >
           {
-              this.state && this.state.isStarred? 
-              <Image style={styles.image} source={require( '../assets/star-filled.png' )} />:
-              <Image style={styles.image} source={require( '../assets/star-unfilled.png' )} />
+            this.state && this.state.isStarred? 
+            <Image style={styles.image} source={require( '../assets/star-filled.png' )} />:
+            <Image style={styles.image} source={require( '../assets/star-unfilled.png' )} />
           }
           </Text>
         </View>

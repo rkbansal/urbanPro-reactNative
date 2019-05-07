@@ -5,6 +5,7 @@ import FontAwesome, { Icons, IconTypes } from 'react-native-fontawesome';
 import { getRandomColor } from '../lib/helper';
 import Avatar from './Avatar';
 import { ExtraDetailAttributes } from '../constants';
+import Star from './Start';
 
 
 export default class Details extends Component {
@@ -56,7 +57,7 @@ export default class Details extends Component {
   }
 
   render() {
-    const {platformTag, dataType, created, createdOn, name, phoneNumber } = this.props;
+    const {platformTag, dataType, created, createdOn, name, phoneNumber, isStarred } = this.props;
     return (
       <View style={styles.top}>
         <View style={styles.avatar}>
@@ -66,18 +67,20 @@ export default class Details extends Component {
           <View style={{flexDirection: 'row'}}>
             <Text style={{ fontSize:16, fontWeight: '700'}} >{name || ""}</Text>
             <Text style={styles.platform}>{ platformTag || dataType && 'New'}</Text>
-            <Text style={styles.created}>{ created || createdOn}</Text>
           </View>
           <View>
-          {
-            this.getExtraDetails()
-          }
-          <Text onPress={()=>{this.onPressCall(phoneNumber)}} >
-          <FontAwesome>{Icons.phoneSquare}</FontAwesome>
-          </Text>
+            {
+                this.getExtraDetails()
+            }
           </View>
-
         </View>
+        <Text style={styles.created}>{ created || createdOn}</Text>
+            <Text onPress={()=>{this.onPressCall(phoneNumber)}} >
+                Call now
+                {/* <FontAwesome>{Icons.phoneSquare}</FontAwesome> */}
+            </Text>
+
+        <Star isStarred={isStarred}></Star>
       </View>
     )
   }

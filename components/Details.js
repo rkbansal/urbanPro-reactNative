@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Linking, Platform } from 'react-native';
-import FontAwesome, { Icons, IconTypes } from 'react-native-fontawesome';
-
 import { getRandomColor } from '../lib/helper';
 import Avatar from './Avatar';
-import { ExtraDetailAttributes } from '../constants';
-import Star from './Start';
+import { ExtraDetailAttributes, Enquiries, Students } from '../constants';
+import Icon from "./Icon";
+import Star from './Star';
 
 
 export default class Details extends Component {
@@ -36,10 +35,44 @@ export default class Details extends Component {
     if(!this.state.extraDetails) return  <View />;
 
     return this.state.extraDetails.map((detail,key)=>{
-        return <Text key={key}>
+        return (
+        <Text style={styles.content} key={key}>
             {detail}
         </Text>
+        )
     })
+  }
+
+  getActions(){
+    const {type, isStarred} = this.props;
+    return (
+      <View style={styles.actions}>
+        {type == Enquiries && (<Icon
+            type="MaterialCommunityIcons"
+            name="dots-vertical"
+            color="rgb(102, 102, 102)"
+            size={20}
+        />)}
+        <Text onPress={()=>{this.onPressCall(phoneNumber)}} >
+          <Icon
+            name="call"
+            color="rgb(57, 193, 0)"
+            size={15}
+          />
+        </Text>
+        {type == Students && <Star isStarred={isStarred}></Star>}
+      </View>
+    );
+
+  //
+  // <Text style={styles.actions} onPress={()=>{this.onPressCall(phoneNumber)}} >
+  //     <Icon
+  //       name="call"
+  //       color="rgb(57, 193, 0)"
+  //       size={15}
+  //     />
+  // </Text>
+  // {"..."}
   }
 
   onPressCall(phoneNumber){
@@ -65,7 +98,7 @@ export default class Details extends Component {
         </View>
         <View style={styles.right}>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{ fontSize:16, fontWeight: '700'}} >{name || ""}</Text>
+            <Text style={styles.name} >{name || ""}</Text>
             <Text style={styles.platform}>{ platformTag || dataType && 'New'}</Text>
           </View>
           <View>
@@ -75,12 +108,7 @@ export default class Details extends Component {
           </View>
         </View>
         <Text style={styles.created}>{ created || createdOn}</Text>
-            <Text onPress={()=>{this.onPressCall(phoneNumber)}} >
-                Call now
-                {/* <FontAwesome>{Icons.phoneSquare}</FontAwesome> */}
-            </Text>
-
-        <Star isStarred={isStarred}></Star>
+        {this.getActions()}
       </View>
     )
   }
@@ -97,15 +125,27 @@ const styles = StyleSheet.create({
     padding: 10,
     lineHeight: 10
   },
-
   right: {
     flex: 12,
   },
+  name: {
+    fontSize:14,
+    fontWeight: '700'
+  },
   platform: {
     marginLeft: 7,
-    color: 'rgb(242,143,92)'
+    color: 'rgb(242,143,92)',
+    fontSize:14
   },
   created:{
     justifyContent: 'flex-end'
+  },
+  content: {
+    fontSize: 11
+  },
+  actions: {
+    flexDirection:'column',
+    justifyContent: "space-between",
+    alignItems: "center"
   }
 })

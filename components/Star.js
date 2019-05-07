@@ -19,15 +19,15 @@ export default class Star extends Component {
   render() {
     return (
         <View >
-        <Text
-            onPress={this.onStartClick}
-          >
-        {
-            this.state && this.state.isStarred? 
-            <Image style={styles.image} source={require( '../assets/star-filled.png' )} />:
-            <Image style={styles.image} source={require( '../assets/star-unfilled.png' )} />
-        }
-        </Text>
+          <Text
+              onPress={this.onStartClick}
+            >
+          {
+              this.state && this.state.isStarred? 
+              <Image style={styles.image} source={require( '../assets/star-filled.png' )} />:
+              <Image style={styles.image} source={require( '../assets/star-unfilled.png' )} />
+          }
+          </Text>
         </View>
     )
   }
@@ -35,8 +35,8 @@ export default class Star extends Component {
 
 const styles = StyleSheet.create({
   image: {
-    height:20,
-    width: 20,
+    height:15,
+    width: 15,
     justifyContent: 'flex-end'
   }
 })

@@ -4,59 +4,31 @@ import {
   createAppContainer,
   createMaterialTopTabNavigator
 } from "react-navigation";
-import Student from "../components/cell/Student";
-import { fetchStudents } from "../apis";
+import InfoList from "../components/InfoList";
+
 
 class Enquiries extends React.Component {
+  componentDidMount() {}
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Enquiries</Text>
-      </View>
+      <InfoList type={'Enquiries'}/>
     );
   }
 }
 
 class Students extends React.Component {
-  constructor(props) {
-    super(props);
-    state = {
-      students: []
-    };
-  }
-  componentDidMount() {
-    fetchStudents().then(r => {
-      this.setState(
-        {
-          students: [...r.dataList]
-        },
-        () => {
-          console.warn(this.state.students);
-        }
-      );
-    });
-  }
+  componentDidMount() {}
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        {this.state && this.state.students.length > 0 ? (
-          <FlatList
-            data={this.state.students}
-            keyExtractor={(item, index) => "key" + index.toString()}
-            renderItem={({ item }) => <Student {...item} />}
-          />
-        ) : (
-          <View />
-        )}
-      </View>
+      <InfoList type={'Students'}/>
     );
   }
 }
 
 const TabNavigator = createMaterialTopTabNavigator(
   {
+    Students: { screen: Students },
     Enquiries: { screen: Enquiries },
-    Students: { screen: Students }
   },
   {
     tabBarPosition: "top",

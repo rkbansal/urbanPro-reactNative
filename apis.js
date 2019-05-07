@@ -1,6 +1,7 @@
-export async function fetchStudents(){
-  const response = await fetch("http://www.mocky.io/v2/5c41950b0f0000543fe7b8a2");
-  const students = await response.json();
-  console.log(students);
-  return students;
+import { Endpoints } from "./constants";
+
+export async function getDetails(type){
+  const url = Endpoints[type];
+  const response = await fetch(url);
+  return  await response.json();
 }

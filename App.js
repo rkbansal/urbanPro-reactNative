@@ -1,49 +1,3 @@
-// import React from 'react';
-// import { Text, View } from 'react-native';
-// import { createBottomTabNavigator, createAppContainer, createMaterialTopTabNavigator } from 'react-navigation';
-
-// class HomeScreen extends React.Component {
-//   render() {
-//     return (
-//       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//         <Text>Home!</Text>
-//       </View>
-//     );
-//   }
-// }
-
-// class SettingsScreen extends React.Component {
-//   render() {
-//     return (
-//       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-//         <Text>Settings!</Text>
-//       </View>
-//     );
-//   }
-// }
-
-// const TabNavigator = createMaterialTopTabNavigator({
-//   Home: { screen: HomeScreen },
-//   Settings: { screen: SettingsScreen },
-// }, {
-//   tabBarPosition: 'top',
-//   tabBarOptions: {
-//     activeTintColor: 'black',
-//     inactiveTintColor: 'rgb(128, 128, 128)',
-//     labelStyle: {
-//       fontSize: 12,
-//     },
-//     indicatorStyle: {
-//       backgroundColor: 'rgb(16, 207, 150)',
-//       height: 4,
-//     }
-//   }
-// });
-
-// export default createAppContainer(TabNavigator);
-
-
-
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -100,14 +54,3 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
-
-
-{/* <View style={styles.container}> */}
-{/* <Text style={styles.welcome}>Welcome to React Native!</Text> */}
-  {/* <View style={styles.main}> */}
-  {/* <Text style={styles.welcome}>Welcome to React Native!</Text> */}
-  {/* </View> */}
-  {/* <Text style={styles.welcome}>Welcome to React Native!</Text> */}
-  {/* <Text style={styles.instructions}>To get started, edit App.js</Text> */}
-  {/* <Text style={styles.instructions}>{instructions}</Text> */}
-{/* </View> */}
